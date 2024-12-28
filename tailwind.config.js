@@ -10,6 +10,11 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			slack: {
+				DEFAULT: '#5c3B58',
+				dark: '#481349',
+				medium: '#5E2C5F'
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

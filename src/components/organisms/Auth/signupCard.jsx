@@ -21,7 +21,7 @@ export const SignupCard = ()=>{
                 <CardDescription>SignUp to access your account</CardDescription>
           </CardHeader>
             <CardContent>
-              <form classname='space-y-3'>
+              <form className='space-y-3'>
                  <Input
                   placeholder="Email"
                   required
@@ -55,7 +55,7 @@ export const SignupCard = ()=>{
                   disabled={false}
                 />
                 <Button
-                  classname="w-full"
+                  className="w-full"
                   type="submit"
                   size="lg"
                   disabled={false}
