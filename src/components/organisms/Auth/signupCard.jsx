@@ -37,7 +37,6 @@ export const SignupCard = ({
                     </div>
                 )}
 
-
                 {isSuccess && (
                     <div className='bg-primary/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-primary mb-5'>  
                         <FaCheck className='size-5' />
@@ -48,8 +47,6 @@ export const SignupCard = ({
                     </div>
                 )}
 
-
-                
           </CardHeader>
             <CardContent>
               <form className='space-y-3' onSubmit={onSignupFormSubmit}>
