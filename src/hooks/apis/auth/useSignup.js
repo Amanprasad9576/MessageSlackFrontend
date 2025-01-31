@@ -19,7 +19,8 @@ export const useSignup =()=>{
           toast({
             title: 'something error',
             description: 'something error from user side',
-            variant: "destructive",
+            variant: 'destructive',
+            type:'error',
          });
         }
   });
