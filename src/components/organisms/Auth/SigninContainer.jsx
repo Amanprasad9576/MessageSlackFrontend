@@ -31,14 +31,14 @@ export const SigninContainer = ()=>{
             });
     
     };
-  /*  useEffect(()=>{
+    useEffect(()=>{
         if(isSuccess){
             setTimeout(()=>{
               navigate('/home');
             },3000);
         }
     },[isSuccess,navigate]);
- */
+ 
     return (
         <SigninCard
            isPending={isPending}
