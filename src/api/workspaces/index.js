@@ -1,37 +1,34 @@
 import axiosConfig from "@/config/axiosConfig";
 
-export const createWorkspaceRequest= async({name,description,token}) =>{
+export const createWorkspaceRequest = async ({ name, description, token }) => {
+
     try {
-       // const {auth} = useAuth();
-       const response = axiosConfig.post('/workspaces',{name,description},{
-         headers:{
-            'x-access-token':token
-         }
-       });
-       console.log('Request in create workspace',response);
-        return response?.data;
-    } catch (error) {
-          console.log('Error in creating workspace',error);
-          throw error.response.data;
-     }
-}
+        const response = await axios.post('/workspaces', { name, description}, {
+            headers: {
+                'x-access-token': token
+            }
+        });
+        console.log('Response in create workspace request', response);
+        return response?.data?.data;
 
-
-export const fetchWorkspaceRequest= async ({token}) =>{
-    try {
-       const response = axiosConfig.get('/workspace',{
-           headers:{
-               'x-access-token':token
-           }
-    })
-    console.log('fetching the workspace data',response);
-    return response?.data;
-
-    } catch (error) {
-       console.log('Error in fetching workspace data',error);
-       throw error.response.error;
+    } catch(error) {
+        console.log('Error in create workspace request', error);
+        throw error.response.data;
     }
 };
 
+export const fetchWorkspacesRequest = async ({ token }) => {
+    try {
+        const response = await axios.get('/workspaces', {
+            headers: {
+                'x-access-token': token
+            }
+        });
+        console.log('Response in fetch workspace request', response);
+        return response?.data?.data;
 
-// createWorkspaceRequest  --> name, descrpttion, token
+    } catch(error) {
+        console.log('Error in fetching workspace request', error);
+        throw error.response.data;
+    }
+};
