@@ -8,7 +8,6 @@ import { useCreateWorkspaceModal } from '@/hooks/context/useCreateWorkspaceModal
 
 export const UserButton = () =>{
     const navigate = useNavigate();
-
     const { auth, logout } = useAuth();
     const { toast } = useToast();
 
@@ -48,7 +47,6 @@ export const UserButton = () =>{
                     <LogOutIcon className='size-4 mr-2 h-10' />
                     Logout
                 </DropdownMenuItem>
-
             </DropdownMenuContent>
         </DropdownMenu>
     )
