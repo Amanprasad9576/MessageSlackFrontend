@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle,DialogDescription } from "@/components/ui/dialog"
 import { useCreateWorkspaceModal } from "@/hooks/context/useCreateWorkspaceModal";
 import { useCreateWorkspace } from "@/hooks/workspaces/useCreateWorkspace";
 import { useQueryClient } from "@tanstack/react-query"
@@ -20,32 +20,37 @@ export const CreateWorkspaceModal =()=>{
     const navigate = useNavigate();
 
     function handleClose(){
-        setOpenCreateWorkspaceModal('false');
+        setOpenCreateWorkspaceModal(false);
     }
-    async function handleFormSubmit(e){
+    async function handleFormSubmit(e) {
         e.preventDefault();
         try {
-           const data = await createWorkspaceMutation({name:workspace}); 
-           console.log('Created the workspace', data);
-           navigate(`/workspaces/${data._id}`);
-           queryClient.invalidateQueries('fetchWorkspaces');
-        } catch (error) {
-             console.log('Not able to create a new workspace', error);
-        }  finally {
+            const data = await createWorkspaceMutation({ name: workspaceName });
+            console.log('Created the workspace', data);
+            navigate(`/workspaces/${data._id}`);
+            queryClient.invalidateQueries({ queryKey: ["fetchWorkspaces"] });
+
+        } catch(error) {
+            console.log('Not able to create a new workspace', error);
+        } finally {
             setWorkspaceName('');
             setOpenCreateWorkspaceModal(false);
         }
     }
-  return (
-     <Dialog 
-         open={openCreateWorkspaceModal}
-         onOpenChange={handleClose}
-         >
-        <DialogContent>
-           <DialogHeader>
-               <DialogTitle>Create a new workspace </DialogTitle>
-           </DialogHeader>
-           <form onSubmit={handleFormSubmit}>
+
+    return (
+        <Dialog
+            open={openCreateWorkspaceModal}
+            onOpenChange={handleClose}
+        >
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Create a new workspace</DialogTitle>
+                    <DialogDescription>This action cannot be undone. Are you sure?</DialogDescription>
+
+                </DialogHeader>
+
+                <form onSubmit={handleFormSubmit}>
                     <Input 
                         required
                         disabled={isPending}
@@ -55,15 +60,16 @@ export const CreateWorkspaceModal =()=>{
                         onChange={(e) => setWorkspaceName(e.target.value)}
                     />
 
-                <div className='flex justify-end mt-5'>
-                    <Button disabled={isPending}>Create workspace</Button>
-                </div>
-           </form>
-        </DialogContent>
-     </Dialog>
-  )
-}
+                    <div className='flex justify-end mt-5'>
+                       <Button type="submit" disabled={isPending}>Create workspace</Button>
 
+                    </div>
+                </form>
+            </DialogContent>
+            
+        </Dialog>
+    );
+};  
 
 
 

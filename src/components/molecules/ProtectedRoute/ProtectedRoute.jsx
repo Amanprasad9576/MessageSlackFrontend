@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/context/useAuth';
 
 export const ProtectedRoute = ({ children }) => {
-    const { auth,setAuth  } = useAuth();
+    const { auth } = useAuth();
 
     if(auth.isLoading) {
         return <div><LucideLoader2 className="animate-spin ml-2" />Loading...</div>;

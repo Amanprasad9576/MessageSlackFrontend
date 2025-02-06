@@ -12,6 +12,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
+        console.log('token',token);
         if(user && token) {
             setAuth({
                 user: JSON.parse(user),
@@ -35,8 +36,6 @@ export const AuthContextProvider = ({ children }) => {
            isLoading:false
       });
     }
-
-    
 
 
        return (
