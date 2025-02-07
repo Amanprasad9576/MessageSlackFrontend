@@ -28,8 +28,8 @@ export const WorkspaceNavbar = () => {
         
         if(workspace) {
             setCurrentWorkspace(workspace);
-            console.log(setCurrentWorkspace);
-            console.log(workspace);
+         //   console.log(setCurrentWorkspace);
+         //   console.log(workspace);
         }
 
 

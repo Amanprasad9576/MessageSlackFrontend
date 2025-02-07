@@ -42,7 +42,7 @@ export const fetchWorkspaceDetailsRequest = async ({ workspaceId, token }) => {
                 'x-access-token': token
             }
         });
-        console.log('token',token);
+   //     console.log('token',token);
         console.log('Response in fetching workspace details request', response);
         return response?.data?.data;
     } catch(error) {
