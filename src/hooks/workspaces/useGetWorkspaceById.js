@@ -19,7 +19,15 @@ export const useGetWorkspaceByIds = (id) => {
 };
 
 
+/*  Apply the feature  on click button edit that  
+ edit workspace name . name of workspace is update 
+ in all the place   
+ how to implement it 
+ delete the workspace from the cache 
+ 
 
+
+*/
 
 
 

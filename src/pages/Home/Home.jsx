@@ -9,14 +9,14 @@ export const Home = () =>{
     const { setOpenCreateWorkspaceModal } = useCreateWorkspaceModal();
 
     const navigate = useNavigate();
-
+  
     useEffect(() => {
 
         if(isFetching) return;
 
         console.log('Workspaces downloaded is', workspaces);
 
-        if( !workspaces) {
+        if(workspaces.length === 0 || !workspaces) {
             console.log('No workspaces found, creating one');
             setOpenCreateWorkspaceModal(true);
 
@@ -25,6 +25,8 @@ export const Home = () =>{
         }
 
     }, [isFetching, workspaces, navigate]);
+
+    
     return (
         <div>
            <h1 className= ' text-black '> Home</h1>

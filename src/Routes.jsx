@@ -15,6 +15,9 @@ export const AppRoutes = () =>{
             <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>} />
           
             <Route path="/workspaces/:workspaceId" element={<ProtectedRoute><WorkspaceLayout>Workspace</WorkspaceLayout></ProtectedRoute>} />
+            <Route 
+            path="/workspaces/:workspaceId/channels/:channelId"
+            element={<ProtectedRoute>channel</ProtectedRoute>} />
 
             <Route path="*" element={<NotFoundPage />} />
          </Routes>

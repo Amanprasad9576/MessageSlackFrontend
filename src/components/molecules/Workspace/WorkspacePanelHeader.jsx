@@ -2,10 +2,14 @@ import { DropdownMenuTrigger,DropdownMenu, DropdownMenuContent, DropdownMenuItem
 import { Button } from "@/components/ui/button"
 import { ChevronDownIcon,ListFilterIcon,SquarePenIcon} from "lucide-react"
 import { useAuth } from "@/hooks/context/useAuth"
+import { useWorkspacePreferencesModal } from "@/hooks/context/useWorkspacePreferencesModal";
+import { useEffect } from "react";
+
+
 export const WorkspacePanelHeader =({workspace})=>{
      
     console.log('workspace is',workspace);
-
+    const { setWorkspace }= useWorkspacePreferencesModal();
     const workspacemembers = workspace?.members;
 
     const {auth} = useAuth();
@@ -13,15 +17,21 @@ export const WorkspacePanelHeader =({workspace})=>{
 
     const isLoggedInUserAdminOfWorkspace = workspacemembers?.find(member => member.memberId._id === auth?.user?._id && member.role === 'admin');
 
-    console.log(isLoggedInUserAdminOfWorkspace);
+    console.log('Workspace Admin',isLoggedInUserAdminOfWorkspace);
+    
+    const {setInitialValue,setOpenPreferences} = useWorkspacePreferencesModal();
 
+    useEffect(()=>{
+     console.log('setOpenPreferences',setOpenPreferences);
+    },[setOpenPreferences]);
 
-
+    useEffect(()=>{
+        setWorkspace(workspace);
+    },[]);
 
     return (
         <>
-            
-        
+ 
         <div
             className='flex items-center justify-between px-4 h-[50px] gap-0.5'
         >
@@ -100,3 +110,9 @@ export const WorkspacePanelHeader =({workspace})=>{
         </>
     );
 };
+
+
+
+
+// after deleting the workspace the user goes to next
+// available workspace

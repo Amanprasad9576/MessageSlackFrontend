@@ -30,7 +30,7 @@ export const useSignin = ()=>{
           })
        },
          onError :(data) =>{
-            console.log('Something error',error.data);
+            console.log('Something error',data);
             toast({
                varient:'destructive',
                message:'Something wrong',

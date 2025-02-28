@@ -12,9 +12,10 @@ export const UserButton = () =>{
     const { toast } = useToast();
 
     const { setOpenCreateWorkspaceModal } = useCreateWorkspaceModal();
-
+    
+    console.log(setOpenCreateWorkspaceModal);
     function openWorkspaceCreateModal() {
-        setOpenCreateWorkspaceModal(true);
+       setOpenCreateWorkspaceModal(true);
     }
     
      async function handleLogout(){
@@ -34,19 +35,19 @@ export const UserButton = () =>{
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-               <DropdownMenuItem onClick={openWorkspaceCreateModal}>
+              <DropdownMenuItem onClick={openWorkspaceCreateModal}>
                     <PencilIcon className='size-4 mr-2 h-10' />
                     Create Workspace
-                </DropdownMenuItem>
-
+                </DropdownMenuItem>     
+    
                 <DropdownMenuItem>
                   <SettingsIcon className='size-4 mr-2 h-10' />
                       Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout}>
+               <DropdownMenuItem onClick={handleLogout}>
                     <LogOutIcon className='size-4 mr-2 h-10' />
                     Logout
-                </DropdownMenuItem>
+                </DropdownMenuItem>  
             </DropdownMenuContent>
         </DropdownMenu>
     )

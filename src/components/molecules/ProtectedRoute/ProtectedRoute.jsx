@@ -22,4 +22,6 @@ export const ProtectedRoute = ({ children }) => {
 
 
 
-// Auth
+// Protected Router don't allow the user to enter another page
+// without passing the authontication or initial level of barrier
+// even having knowledge of going the route of going of that page
