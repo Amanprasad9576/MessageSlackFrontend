@@ -5,9 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useCreateWorkspaceModal } from '@/hooks/context/useCreateWorkspaceModal';
-import { useCreateWorkspace } from '@/hooks/workspaces/useCreateWorkspace';
-
-
+import { useCreateWorkspace } from '@/hooks/apis/workspaces/useCreateWorkspace';
     export const CreateWorkspaceModal = () => {
         const { openCreateWorkspaceModal, setOpenCreateWorkspaceModal } = useCreateWorkspaceModal();
 

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useAuth } from "../context/useAuth"
+import { useAuth } from "@/hooks/context/useAuth";
 import { updateWorkspaceRequest } from "@/api/workspaces";
 
 export const useUpdateWorkspace =()=>{

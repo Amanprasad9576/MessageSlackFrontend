@@ -80,9 +80,103 @@ export const deleteWorkspaceRequest = async ({ workspaceId, token}) => {
     }
 };
 
+export const addChannelToWorkspaceRequest = async ({ workspaceId, channelName, token }) => {
+    try {
+        const response = await axiosConfig.put(`/workspaces/${workspaceId}/channels`, { channelName }, {
+            headers: {
+                'x-access-token': token
+            }
+        });
+        return response?.data?.data;
+    } catch(error) {
+        console.log('Error in adding channel to workspace request', error);
+        throw error.response.data;
+    }
+};
+
+export const resetJoinCodeRequest = async ({ workspaceId,token }) => {
+    try {
+        const response = await axiosConfig.put(`/workspaces/${workspaceId}/joinCode/reset`, {}, {
+            headers: {
+                'x-access-token': token
+            }
+        });
+        return response?.data?.data;
+    } catch(error) {
+        console.log('Error in resetting join code request', error);
+        throw error.response.data;
+    }
+};
+export const addMemberToWorkspaceRequest = async ({ workspaceId, token }) => {
+    try {
+        const response = await axiosConfig.put(`/workspaces/${workspaceId}/members`, {}, {
+            headers: {
+                'x-access-token': token
+            }
+        });
+        return response?.data?.data;
+    } catch(error) {
+        console.log('Error in adding member to workspace request', error);
+        throw error.response.data;
+    }
+};
+
+export const joinWorkspaceRequest = async ({ workspaceId, joinCode, token }) => {
+    try {
+        const response = await axiosConfig.put(`/workspaces/${workspaceId}/join`, { joinCode }, {
+            headers: {
+                'x-access-token': token
+            }
+        });
+        return response?.data?.data;
+    } catch(error) {
+        console.log('Error in joining workspace request', error);
+        throw error.response.data;
+    }
+};
 
 
 
+
+
+
+
+
+
+
+// what should be the input of the joinWorkspaceRequest
+ //   token
+ //   workspaceId
+// joinCode
+
+/* what should be the input to addMemberToWorkspace
+    workspaceId,
+    memberId,
+    role,
+    userId
+
+
+*/
+
+/*
+  who can reset the join code --> workspace Admin
+  having token
+*/
+
+
+
+
+
+
+
+
+
+/* 
+procedure for adding channel name to the workspace 
+workspaceId, channel name , token
+
+
+*/
 
 
 /* 

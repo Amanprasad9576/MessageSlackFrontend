@@ -3,8 +3,10 @@ import { AuthContextProvider} from "./AuthContext";
 import  { WorkspaceContextProvider } from "./WorkspaceContext";
 import { WorkspacePreferencesModalContextProvider } from "./WorkspacePreferencesModalContext";
 import  { CreateChannelContextProvider } from "./CreateChannelContext";
+import { SocketContextProvider } from "./SocketContext";
 
 export const AppContextProvider = combineContext(
+    SocketContextProvider,
     AuthContextProvider,
     WorkspaceContextProvider,
     WorkspacePreferencesModalContextProvider,

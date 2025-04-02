@@ -1,8 +1,9 @@
 import { UserButton } from "@/components/atoms/UserButton/UserButton"
-import { useFetchWorkspace } from "@/hooks/workspaces/useFetchWorkspace";
+import { useFetchWorkspace } from "@/hooks/apis/workspaces/useFetchWorkspace";
 import { useEffect } from "react";
 import { useCreateWorkspaceModal } from "@/hooks/context/useCreateWorkspaceModal";
 import { useNavigate } from "react-router-dom";
+
 export const Home = () =>{
     const { isFetching, workspaces } = useFetchWorkspace();
 

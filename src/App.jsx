@@ -4,6 +4,7 @@ import { AppContextProvider } from '@/context/AppContext';
 import { CreateWorkspaceContextProvider } from '@/context/CreateWorkspaceContext';  // Import the missing provider
 import { Modals } from '@/components/organisms/Modals/Modals';
 import { AppRoutes } from '@/Routes';
+import { CreateChannelContextProvider } from './context/CreateChannelContext';
 
 function App() {
   const queryClient = new QueryClient();
@@ -12,8 +13,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AppContextProvider>
         <CreateWorkspaceContextProvider> 
+          <CreateChannelContextProvider>
           <AppRoutes />
           <Modals />
+          </CreateChannelContextProvider>
         </CreateWorkspaceContextProvider>
       </AppContextProvider>
       <Toaster />

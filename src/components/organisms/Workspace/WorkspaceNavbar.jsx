@@ -1,12 +1,10 @@
 import { InfoIcon, LucideLoader2, SearchIcon } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetWorkspaceByIds } from '@/hooks/workspaces/useGetWorkspaceById';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/context/useAuth';
-
-import { useCurrentWorkspace } from '@/hooks/workspaces/useCurrentWorkspace';
-
+import { useGetWorkspaceByIds } from '@/hooks/apis/workspaces/useGetWorkspaceById';
+import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace';
 export const WorkspaceNavbar = () => {
 
     const { workspaceId } = useParams();

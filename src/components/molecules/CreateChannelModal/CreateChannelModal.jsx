@@ -1,49 +1,78 @@
-import { Dialog, DialogHeader, DialogTitle ,DialogContent, DialogTrigger} from "@/components/ui/dialog"
+import { Dialog, DialogHeader, DialogTitle ,DialogContent } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input";
-import { useCreateChannelModal } from "@/hooks/context/useCreateChannelModal"
 import { useState } from "react";
+import { useCreateChannelModal } from "@/hooks/context/useCreateChannelModal";
+import { useAddChannelToWorkspace } from "@/hooks/apis/workspaces/useAddChannelToWorkspace";
+import { useCurrentWorkspace } from "@/hooks/context/useCurrentWorkspace";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 
-export const CreateChannelModal =() =>{
-    const { openCreateChannelModal,setOpenCreateChannelModal } = useCreateChannelModal();
-    const [ channelName,setChannelName] =useState();
+export const CreateChannelModal = () => {
 
-    function handleClose(){
+    const { toast } = useToast();
+
+    
+    const { openCreateChannelModal, setOpenCreateChannelModal } = useCreateChannelModal();
+
+    const [channelName, setChannelName] = useState('');
+
+    const { addChannelToWorkspaceMutation } = useAddChannelToWorkspace();
+
+    const {currentWorkspace} = useCurrentWorkspace();
+
+    function handleClose() {
         setOpenCreateChannelModal(false);
     }
-    function handleFormSubmit(e){
-      e.preventDefault();
-      console.log('form submitted succesfully');
-    }
-    return (
-        <Dialog 
-          open={openCreateChannelModal}
-          onOpenChange={handleClose}
-        >
-           <DialogContent>
-             <DialogHeader>
-                <DialogTitle>
-                    Create a channel 
-                </DialogTitle>
-                <form onSubmit={handleFormSubmit}>
-                   <Input
-                    value={channelName}
-                    onChange={(e)=>setChannelName(e.target.value)}
-                    minLength={3}
-                    placeholder="Channel Name like team announcement"
-                    required
-                   />
-                  <div
-                   className="flex justify-end mt-4"
-                  > 
-                     Create channel
-                  </div>
-                </form>
-             </DialogHeader>
-           </DialogContent>
-        </Dialog>
-    )
-}
 
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        await addChannelToWorkspaceMutation({
+            workspaceId: currentWorkspace?._id,
+            channelName: channelName
+        });
+
+        toast({
+            type: 'success',
+            title: 'Channel created successfully'
+        });
+
+        //queryClient.invalidateQueries(`fetchWorkspaceById-${currentWorkspace?._id}`);
+
+        handleClose();
+    }
+
+    return (
+        <Dialog
+            open={openCreateChannelModal}
+            onOpenChange={handleClose}
+        >
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Create a channel</DialogTitle>
+                </DialogHeader>
+
+                <form onSubmit={handleFormSubmit}>
+                    <Input 
+                        value={channelName}
+                        onChange={(e) => setChannelName(e.target.value)}
+                        minLength={3}
+                        placeholder="Channel Name e.g. team-announcements"
+                        required
+                    />
+
+                    <div className='flex justify-end mt-4'>
+                        <Button>
+                            Create Channel
+                        </Button>
+                    </div>
+                </form>
+            </DialogContent>
+            
+        </Dialog>
+    );
+};
+    
+   
 
 
 // In a workspace there can be so many channel present

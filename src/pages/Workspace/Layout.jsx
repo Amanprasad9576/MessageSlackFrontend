@@ -30,7 +30,7 @@ export const WorkspaceLayout =({children})=>{
              </ResizablePanel>    
           </ResizablePanelGroup>
 
-          {children}
+           {children}
         </div>
      </div>
    )
