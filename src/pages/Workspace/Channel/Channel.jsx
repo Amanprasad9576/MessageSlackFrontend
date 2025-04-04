@@ -7,11 +7,9 @@ import { ChannelHeader } from '@/components/molecules/Channnel/ChannelHeader';
 import { ChatInput } from '@/components/molecules/ChatInput/ChatInput';
 import { Message } from '@/components/molecules/Message/Message';
 import { useGetChannelById } from '@/hooks/apis/channels/useGetChannelById';
-
-//import { useGetChannelMessages } from '@/hooks/apis/channels/useGetChannelMessages';
-//import { useChannelMessages } from '@/hooks/context/useChannelMessages';
+import { useGetChannelMessages } from '@/hooks/apis/channels/useGetChannelMessage';
 import { useSocket } from '@/hooks/context/useSocket';
-
+import { useChannelMessages } from '@/hooks/context/useChannnelMessage';
 
 
 export const Channel = () => {
